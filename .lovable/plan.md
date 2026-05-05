@@ -1,37 +1,52 @@
-## "Will you go on a date with me?" page
+## Add a confession-notebook intro before the date question
 
-A playful single-page site that asks her out and lets her pick a date/time.
+A multi-page handwritten notebook from yumyum to simisimi that auto-types itself and turns pages with a click — leading into the existing "Will you go on a date with me?" flow.
 
-### Page flow (single route: `/`)
+### Flow
 
-**Step 1 — The Ask**
-- Cute romantic GIF / heart illustration centered
-- Heading: "Will you go on a date with me?"
-- Two buttons:
-  - **Yes** (green) → advances to Step 2
-  - **No** (red) → runs away from cursor on hover so it can never be clicked (classic gag). Each dodge subtly grows the Yes button.
+1. **Notebook intro (NEW)** — 7 short pages, typewriter reveal, click to skip typing or turn page
+2. **The Ask** — existing Yes/No
+3. **Pick date/time/place**
+4. **Confirmation**
 
-**Step 2 — Pick a date**
-- Heading: "Yay! 💖 When are you free?"
-- Shadcn date picker (Popover + Calendar, `mode="single"`, future dates only)
-- Time selector (simple `<Select>` with slots like 6:00 PM, 7:00 PM, 8:00 PM, 9:00 PM)
-- Optional location input ("Where should we go?")
-- **Confirm** button → advances to Step 3
+### Notebook pages (warm, playful, signed "yumyum")
 
-**Step 3 — Confirmation**
-- Big celebratory heading: "It's a date! 🥰"
-- Shows chosen date + time + location formatted nicely (e.g. "Saturday, May 9, 2026 at 7:00 PM")
-- Subtle confetti / floating hearts animation
-- "Change details" link to go back to Step 2
+1. "Hi simisimi 🐻 — open this. i wrote you something."
+2. "i've been thinking. mostly about you. mostly at 2am. mostly about your laugh." + bear sticker
+3. "you make my gray days highlighter pink."
+4. "i practiced this in the mirror three times…" + heart sticker
+5. **"a tiny confession from yumyum"** + polaroid photo of simi (placeholder, swap later)
+6. "i drew you a tiny bear and a slightly broken heart. (it's just stage fright.)"
+7. "turn the page — i'm going to ask you something brave."
 
-### Style
-- Soft pink/rose background, white card, rounded buttons, generous spacing
-- Romantic but tasteful — no over-the-top kitsch
-- Fully responsive
+### Visual design
 
-### Files to change
-- `src/routes/index.tsx` — implement the 3-step flow with local state
-- `src/routes/__root.tsx` — page title "Will you date me?"
-- Reuse existing shadcn components: `button`, `calendar`, `popover`, `select`, `input`, `card`
+- Looks like a real ruled notebook page: cream paper, faint pink horizontal lines, red margin line, six binding holes on the left, a strip of yellow washi tape on top
+- Stack illusion: two faded pages peek behind the front one
+- Page-flip animation between pages (subtle scale/rotate fade)
+- Playfair Display italic for the body so it feels handwritten-ish (no extra font install needed — already loaded)
+- Polaroid: white frame, slight rotation, tape feel; caption "for simi 🌹"
+- Doodle stickers float in the corner once typing finishes
 
-No backend / database needed — state is local to the session.
+### Personal details
+
+- Her name: **Simran**, nickname **simisimi**
+- Signed by **yumyum**
+- Three AI-generated illustrations saved to `/public/notebook/`:
+  - `polaroid.png` — soft watercolor placeholder portrait (you can replace with her real photo later by overwriting the file)
+  - `sticker-heart.png` — pink heart with bandaid doodle
+  - `sticker-bear.png` — tiny teddy holding a heart
+
+### Interaction
+
+- Auto-typewriter at ~28ms/char
+- Click anywhere on the page → skip typing if mid-type, otherwise turn to next page
+- Last page → opens the existing "Will you go on a date with me?" flow
+- Subtle hint at bottom: "tap to turn the page" with a heart + chevron
+
+### Files
+
+- **NEW** `src/components/Notebook.tsx` — the full notebook component
+- **NEW** `public/notebook/polaroid.png`, `sticker-heart.png`, `sticker-bear.png` (already generated and in place)
+- `src/styles.css` — add `@keyframes page-flip` and `--animate-page-flip`
+- `src/routes/index.tsx` — add `"notebook"` as the first step (default), advances to `"ask"` when notebook ends
