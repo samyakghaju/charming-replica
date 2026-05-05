@@ -47,22 +47,26 @@ function FloatingHearts() {
 
 function StepAsk({ onYes }: { onYes: () => void }) {
   const [yesScale, setYesScale] = useState(1);
-  const [noPos, setNoPos] = useState<{ x: number; y: number } | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [noPos, setNoPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
   const dodge = () => {
-    const c = containerRef.current;
-    if (!c) return;
-    const rect = c.getBoundingClientRect();
-    const x = Math.random() * (rect.width - 80) - rect.width / 2 + 40;
-    const y = Math.random() * (rect.height - 80) - rect.height / 2 + 40;
+    // Random position anywhere on the viewport, but never near the Yes button (centered).
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    let x = 0;
+    let y = 0;
+    for (let i = 0; i < 10; i++) {
+      x = Math.random() * (vw - 200) - (vw - 200) / 2;
+      y = Math.random() * (vh - 200) - (vh - 200) / 2;
+      if (Math.abs(x) > 180 || Math.abs(y) > 120) break;
+    }
     setNoPos({ x, y });
-    setYesScale((s) => Math.min(s + 0.18, 3));
+    setYesScale((s) => Math.min(s + 0.15, 2.2));
   };
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-xl">
-      <Card className="relative overflow-hidden border-primary/20 bg-card/80 p-10 backdrop-blur-sm shadow-romantic">
+    <div className="relative w-full max-w-xl">
+      <Card className="relative border-primary/20 bg-card/80 p-10 backdrop-blur-sm shadow-romantic">
         <div className="flex flex-col items-center text-center">
           <div className="relative mb-6">
             <div className="absolute inset-0 animate-pulse-glow rounded-full bg-primary/30 blur-2xl" />
@@ -73,32 +77,36 @@ function StepAsk({ onYes }: { onYes: () => void }) {
           </h1>
           <p className="mt-3 text-muted-foreground">No pressure. Well… maybe a little. 🌹</p>
 
-          <div className="relative mt-10 flex h-24 w-full items-center justify-center gap-6">
+          <div className="relative mt-10 flex min-h-24 w-full items-center justify-center gap-6">
             <Button
               size="lg"
               onClick={onYes}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform shadow-romantic"
+              type="button"
+              className="relative z-20 bg-primary text-primary-foreground hover:bg-primary/90 transition-transform shadow-romantic"
               style={{ transform: `scale(${yesScale})` }}
             >
               Yes 💖
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onMouseEnter={dodge}
-              onFocus={dodge}
-              onClick={dodge}
-              className="border-destructive/40 text-destructive hover:bg-destructive/10 transition-transform"
-              style={{
-                transform: noPos ? `translate(${noPos.x}px, ${noPos.y}px)` : undefined,
-                transitionDuration: "200ms",
-              }}
-            >
-              No
-            </Button>
           </div>
         </div>
       </Card>
+
+      {/* No button lives at viewport level so it never overlaps Yes */}
+      <Button
+        size="lg"
+        variant="outline"
+        type="button"
+        onMouseEnter={dodge}
+        onFocus={dodge}
+        onClick={dodge}
+        className="fixed left-1/2 top-1/2 z-10 border-destructive/40 text-destructive hover:bg-destructive/10"
+        style={{
+          transform: `translate(calc(-50% + ${noPos.x || 120}px), calc(-50% + ${noPos.y || 0}px))`,
+          transition: "transform 220ms ease",
+        }}
+      >
+        No
+      </Button>
     </div>
   );
 }
