@@ -65,9 +65,8 @@ const NO_LABELS = [
 function StepAsk({ onYes }: { onYes: () => void }) {
   const [step, setStep] = useState(0);
 
-  const yesScale = Math.min(1 + step * 0.35, 6);
+  const yesScale = Math.min(1 + step * 0.25, 3.5);
   const label = NO_LABELS[Math.min(step, NO_LABELS.length - 1)];
-  const noHidden = step >= NO_LABELS.length - 1 && yesScale >= 5;
 
   return (
     <div className="relative w-full max-w-xl">
@@ -82,7 +81,7 @@ function StepAsk({ onYes }: { onYes: () => void }) {
           </h1>
           <p className="mt-3 text-muted-foreground">No pressure. Well… maybe a little. 🌹</p>
 
-          <div className="relative mt-12 flex min-h-32 w-full flex-wrap items-center justify-center gap-6">
+          <div className="relative mt-16 flex min-h-40 w-full items-center justify-center">
             <Button
               size="lg"
               type="button"
@@ -95,21 +94,20 @@ function StepAsk({ onYes }: { onYes: () => void }) {
             >
               Yes 💖
             </Button>
-
-            {!noHidden && (
-              <Button
-                size="lg"
-                variant="outline"
-                type="button"
-                onClick={() => setStep((s) => s + 1)}
-                className="border-destructive/40 text-destructive hover:bg-destructive/10 whitespace-normal max-w-[260px]"
-              >
-                {label}
-              </Button>
-            )}
           </div>
         </div>
       </Card>
+
+      {/* No button fixed to bottom-right of the screen, always visible */}
+      <Button
+        size="lg"
+        variant="outline"
+        type="button"
+        onClick={() => setStep((s) => Math.min(s + 1, NO_LABELS.length - 1))}
+        className="fixed bottom-8 right-8 z-50 border-destructive/40 bg-card text-destructive hover:bg-destructive/10 whitespace-normal max-w-[280px] shadow-romantic"
+      >
+        {label}
+      </Button>
     </div>
   );
 }
