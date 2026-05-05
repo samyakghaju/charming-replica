@@ -45,28 +45,35 @@ function FloatingHearts() {
   );
 }
 
-function StepAsk({ onYes }: { onYes: () => void }) {
-  const [yesScale, setYesScale] = useState(1);
-  const [noPos, setNoPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+const NO_LABELS = [
+  "No",
+  "Are you sure?",
+  "Really sure?",
+  "What if I asked really nicely?",
+  "Pretty please?",
+  "With a chocolate rice on top?",
+  "What about a matcha frostie?",
+  "Please pookie 🥺",
+  "But :(",
+  "I'm going to cry",
+  "I'm going to die",
+  "Yep, I'm dead 💀",
+  "...okay, ghost me speaking",
+  "From beyond the grave: please?",
+  "My ghost is begging now",
+  "Last wish: just say yes 🌹",
+];
 
-  const dodge = () => {
-    // Random position anywhere on the viewport, but never near the Yes button (centered).
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    let x = 0;
-    let y = 0;
-    for (let i = 0; i < 10; i++) {
-      x = Math.random() * (vw - 200) - (vw - 200) / 2;
-      y = Math.random() * (vh - 200) - (vh - 200) / 2;
-      if (Math.abs(x) > 180 || Math.abs(y) > 120) break;
-    }
-    setNoPos({ x, y });
-    setYesScale((s) => Math.min(s + 0.15, 2.2));
-  };
+function StepAsk({ onYes }: { onYes: () => void }) {
+  const [step, setStep] = useState(0);
+
+  const yesScale = Math.min(1 + step * 0.35, 6);
+  const label = NO_LABELS[Math.min(step, NO_LABELS.length - 1)];
+  const noHidden = step >= NO_LABELS.length - 1 && yesScale >= 5;
 
   return (
     <div className="relative w-full max-w-xl">
-      <Card className="relative border-primary/20 bg-card/80 p-10 backdrop-blur-sm shadow-romantic">
+      <Card className="relative overflow-visible border-primary/20 bg-card/80 p-10 backdrop-blur-sm shadow-romantic">
         <div className="flex flex-col items-center text-center">
           <div className="relative mb-6">
             <div className="absolute inset-0 animate-pulse-glow rounded-full bg-primary/30 blur-2xl" />
@@ -77,36 +84,38 @@ function StepAsk({ onYes }: { onYes: () => void }) {
           </h1>
           <p className="mt-3 text-muted-foreground">No pressure. Well… maybe a little. 🌹</p>
 
-          <div className="relative mt-10 flex min-h-24 w-full items-center justify-center gap-6">
+          <div className="relative mt-12 flex min-h-32 w-full flex-wrap items-center justify-center gap-6">
             <Button
               size="lg"
-              onClick={onYes}
               type="button"
-              className="relative z-20 bg-primary text-primary-foreground hover:bg-primary/90 transition-transform shadow-romantic"
-              style={{ transform: `scale(${yesScale})` }}
+              onClick={onYes}
+              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-romantic origin-center"
+              style={{
+                transform: `scale(${yesScale})`,
+                transition: "transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+              }}
             >
               Yes 💖
             </Button>
+
+            {!noHidden && (
+              <Button
+                size={step > 4 ? "sm" : "lg"}
+                variant="outline"
+                type="button"
+                onClick={() => setStep((s) => s + 1)}
+                className="border-destructive/40 text-destructive hover:bg-destructive/10 origin-center"
+                style={{
+                  transform: `scale(${Math.max(1 - step * 0.1, 0.5)})`,
+                  transition: "transform 300ms ease",
+                }}
+              >
+                {label}
+              </Button>
+            )}
           </div>
         </div>
       </Card>
-
-      {/* No button lives at viewport level so it never overlaps Yes */}
-      <Button
-        size="lg"
-        variant="outline"
-        type="button"
-        onMouseEnter={dodge}
-        onFocus={dodge}
-        onClick={dodge}
-        className="fixed left-1/2 top-1/2 z-10 border-destructive/40 text-destructive hover:bg-destructive/10"
-        style={{
-          transform: `translate(calc(-50% + ${noPos.x || 120}px), calc(-50% + ${noPos.y || 0}px))`,
-          transition: "transform 220ms ease",
-        }}
-      >
-        No
-      </Button>
     </div>
   );
 }
