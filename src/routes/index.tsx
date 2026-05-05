@@ -48,19 +48,17 @@ function FloatingHearts() {
 const NO_LABELS = [
   "No",
   "Are you sure?",
-  "Really sure?",
   "What if I asked really nicely?",
   "Pretty please?",
   "With a chocolate rice on top?",
   "What about a matcha frostie?",
   "Please pookie 🥺",
   "But :(",
-  "I'm going to cry",
   "I'm going to die",
   "Yep, I'm dead 💀",
-  "...okay, ghost me speaking",
+  "Ok, you're talking to Samyak's ghost",
+  "Boo. The ghost is begging now",
   "From beyond the grave: please?",
-  "My ghost is begging now",
   "Last wish: just say yes 🌹",
 ];
 
@@ -100,15 +98,11 @@ function StepAsk({ onYes }: { onYes: () => void }) {
 
             {!noHidden && (
               <Button
-                size={step > 4 ? "sm" : "lg"}
+                size="lg"
                 variant="outline"
                 type="button"
                 onClick={() => setStep((s) => s + 1)}
-                className="border-destructive/40 text-destructive hover:bg-destructive/10 origin-center"
-                style={{
-                  transform: `scale(${Math.max(1 - step * 0.1, 0.5)})`,
-                  transition: "transform 300ms ease",
-                }}
+                className="border-destructive/40 text-destructive hover:bg-destructive/10 whitespace-normal max-w-[260px]"
               >
                 {label}
               </Button>
