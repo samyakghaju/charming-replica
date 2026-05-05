@@ -81,24 +81,24 @@ function StepAsk({ onYes }: { onYes: () => void }) {
           </h1>
           <p className="mt-3 text-muted-foreground">No pressure. Well… maybe a little. 🌹</p>
 
-          <div className="mt-12 flex w-full flex-wrap items-center justify-center gap-6">
+          <div className="mt-12 flex w-full items-center justify-center gap-4">
             <button
               type="button"
               onClick={onYes}
-              className="rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-romantic transition-all hover:bg-primary/90"
+              className="rounded-md bg-green-500 px-4 py-2 font-semibold text-white shadow-romantic transition-all hover:bg-green-600"
               style={{
                 fontSize: `${yesFontSize}rem`,
                 lineHeight: 1.1,
                 transition: "font-size 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
               }}
             >
-              Yes 💖
+              Yes
             </button>
 
             <button
               type="button"
               onClick={() => setStep((s) => Math.min(s + 1, NO_LABELS.length - 1))}
-              className="shrink-0 rounded-xl border border-destructive/40 bg-card px-5 py-3 text-base font-medium text-destructive whitespace-normal max-w-[260px] hover:bg-destructive/10"
+              className="shrink-0 rounded-md bg-red-500 px-4 py-2 text-base font-semibold text-white whitespace-normal max-w-[240px] hover:bg-red-600"
             >
               {label}
             </button>
