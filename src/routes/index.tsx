@@ -65,11 +65,11 @@ const NO_LABELS = [
 function StepAsk({ onYes }: { onYes: () => void }) {
   const [step, setStep] = useState(0);
 
-  const yesScale = Math.min(1 + step * 0.25, 3.5);
+  const yesFontSize = Math.min(1 + step * 0.4, 5); // rem
   const label = NO_LABELS[Math.min(step, NO_LABELS.length - 1)];
 
   return (
-    <div className="relative w-full max-w-xl">
+    <div className="relative w-full max-w-3xl">
       <Card className="relative overflow-visible border-primary/20 bg-card/80 p-10 backdrop-blur-sm shadow-romantic">
         <div className="flex flex-col items-center text-center">
           <div className="relative mb-6">
@@ -81,33 +81,30 @@ function StepAsk({ onYes }: { onYes: () => void }) {
           </h1>
           <p className="mt-3 text-muted-foreground">No pressure. Well… maybe a little. 🌹</p>
 
-          <div className="relative mt-16 flex min-h-40 w-full items-center justify-center">
-            <Button
-              size="lg"
+          <div className="mt-12 flex w-full flex-wrap items-center justify-center gap-6">
+            <button
               type="button"
               onClick={onYes}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-romantic origin-center"
+              className="rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-romantic transition-all hover:bg-primary/90"
               style={{
-                transform: `scale(${yesScale})`,
-                transition: "transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+                fontSize: `${yesFontSize}rem`,
+                lineHeight: 1.1,
+                transition: "font-size 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
               }}
             >
               Yes 💖
-            </Button>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setStep((s) => Math.min(s + 1, NO_LABELS.length - 1))}
+              className="shrink-0 rounded-xl border border-destructive/40 bg-card px-5 py-3 text-base font-medium text-destructive whitespace-normal max-w-[260px] hover:bg-destructive/10"
+            >
+              {label}
+            </button>
           </div>
         </div>
       </Card>
-
-      {/* No button fixed to bottom-right of the screen, always visible */}
-      <Button
-        size="lg"
-        variant="outline"
-        type="button"
-        onClick={() => setStep((s) => Math.min(s + 1, NO_LABELS.length - 1))}
-        className="fixed bottom-8 right-8 z-50 border-destructive/40 bg-card text-destructive hover:bg-destructive/10 whitespace-normal max-w-[280px] shadow-romantic"
-      >
-        {label}
-      </Button>
     </div>
   );
 }
