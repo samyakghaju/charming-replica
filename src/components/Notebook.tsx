@@ -101,6 +101,7 @@ export function Notebook({ onDone }: { onDone: () => void }) {
   }, [page, current.body]);
 
   const skipOrNext = () => {
+    if (!started) setStarted(true);
     if (!done) {
       setShown(current.body);
       setDone(true);
