@@ -114,6 +114,18 @@ export function Notebook({ onDone }: { onDone: () => void }) {
 
   return (
     <div className="relative w-full max-w-2xl">
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          if (!started) setStarted(true);
+          setMuted((m) => !m);
+        }}
+        className="absolute -top-2 right-2 z-20 rounded-full bg-white/80 p-2 text-rose-600 shadow-romantic backdrop-blur hover:bg-white"
+        aria-label={muted ? "Unmute music" : "Mute music"}
+      >
+        {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+      </button>
       <div className="relative">
         {/* Stack illusion */}
         <div className="absolute inset-0 -rotate-2 translate-y-3 rounded-2xl bg-rose-200/60 shadow-romantic" />
