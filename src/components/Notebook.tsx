@@ -1,5 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { Heart, ChevronRight } from "lucide-react";
+import { Heart, ChevronRight, Volume2, VolumeX } from "lucide-react";
+
+// Drop your own .mp3 files into /public/music/ with these names to customize.
+// Each page plays its own track; falls back silently if a file is missing.
+const MUSIC: string[] = [
+  "/music/page-1.mp3",
+  "/music/page-2.mp3",
+  "/music/page-3.mp3",
+  "/music/page-4.mp3",
+  "/music/page-5.mp3",
+  "/music/page-6.mp3",
+  "/music/page-7.mp3",
+];
 
 const PAGES: { title?: string; body: string; doodle?: string; photo?: boolean }[] = [
   {
@@ -37,9 +49,39 @@ export function Notebook({ onDone }: { onDone: () => void }) {
   const [page, setPage] = useState(0);
   const [shown, setShown] = useState("");
   const [done, setDone] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [started, setStarted] = useState(false);
   const timer = useRef<number | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const current = PAGES[page];
+
+  useEffect(() => {
+    if (!started) return;
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.45;
+    }
+    const a = audioRef.current;
+    a.src = MUSIC[page % MUSIC.length];
+    a.muted = muted;
+    a.play().catch(() => {});
+    return () => {
+      a.pause();
+    };
+  }, [page, started]);
+
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.muted = muted;
+  }, [muted]);
+
+  useEffect(() => {
+    return () => {
+      audioRef.current?.pause();
+      audioRef.current = null;
+    };
+  }, []);
 
   useEffect(() => {
     setShown("");
@@ -59,6 +101,7 @@ export function Notebook({ onDone }: { onDone: () => void }) {
   }, [page, current.body]);
 
   const skipOrNext = () => {
+    if (!started) setStarted(true);
     if (!done) {
       setShown(current.body);
       setDone(true);
@@ -71,6 +114,18 @@ export function Notebook({ onDone }: { onDone: () => void }) {
 
   return (
     <div className="relative w-full max-w-2xl">
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          if (!started) setStarted(true);
+          setMuted((m) => !m);
+        }}
+        className="absolute -top-2 right-2 z-20 rounded-full bg-white/80 p-2 text-rose-600 shadow-romantic backdrop-blur hover:bg-white"
+        aria-label={muted ? "Unmute music" : "Mute music"}
+      >
+        {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+      </button>
       <div className="relative">
         {/* Stack illusion */}
         <div className="absolute inset-0 -rotate-2 translate-y-3 rounded-2xl bg-rose-200/60 shadow-romantic" />
