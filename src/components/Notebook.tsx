@@ -49,9 +49,39 @@ export function Notebook({ onDone }: { onDone: () => void }) {
   const [page, setPage] = useState(0);
   const [shown, setShown] = useState("");
   const [done, setDone] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [started, setStarted] = useState(false);
   const timer = useRef<number | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const current = PAGES[page];
+
+  useEffect(() => {
+    if (!started) return;
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0.45;
+    }
+    const a = audioRef.current;
+    a.src = MUSIC[page % MUSIC.length];
+    a.muted = muted;
+    a.play().catch(() => {});
+    return () => {
+      a.pause();
+    };
+  }, [page, started]);
+
+  useEffect(() => {
+    if (audioRef.current) audioRef.current.muted = muted;
+  }, [muted]);
+
+  useEffect(() => {
+    return () => {
+      audioRef.current?.pause();
+      audioRef.current = null;
+    };
+  }, []);
 
   useEffect(() => {
     setShown("");
