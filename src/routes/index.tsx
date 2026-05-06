@@ -237,7 +237,7 @@ function StepDone({
 }
 
 function Index() {
-  const [step, setStep] = useState<"notebook" | "ask" | "pick" | "done">("notebook");
+  const [step, setStep] = useState<"envelope" | "notebook" | "ask" | "pick" | "done">("envelope");
   const [details, setDetails] = useState<{ date: Date; time: string; place: string } | null>(null);
 
   return (
