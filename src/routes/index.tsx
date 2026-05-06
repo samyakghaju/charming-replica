@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import { Notebook } from "@/components/Notebook";
+import { Envelope } from "@/components/Envelope";
 import { format } from "date-fns";
 import { CalendarIcon, Heart, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
