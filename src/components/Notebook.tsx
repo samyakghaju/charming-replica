@@ -53,21 +53,24 @@ export function Notebook({ onDone }: { onDone: () => void }) {
 
   const current = PAGES[page];
 
+  const trackIndex = useRef(0);
   useEffect(() => {
     if (!started) return;
     if (!audioRef.current) {
       audioRef.current = new Audio();
-      audioRef.current.loop = true;
       audioRef.current.volume = 0.45;
+      audioRef.current.muted = muted;
+      const playNext = () => {
+        trackIndex.current = (trackIndex.current + 1) % MUSIC.length;
+        const a = audioRef.current!;
+        a.src = MUSIC[trackIndex.current];
+        a.play().catch(() => {});
+      };
+      audioRef.current.addEventListener("ended", playNext);
+      audioRef.current.src = MUSIC[0];
+      audioRef.current.play().catch(() => {});
     }
-    const a = audioRef.current;
-    a.src = MUSIC[page % MUSIC.length];
-    a.muted = muted;
-    a.play().catch(() => {});
-    return () => {
-      a.pause();
-    };
-  }, [page, started]);
+  }, [started]);
 
   useEffect(() => {
     if (audioRef.current) audioRef.current.muted = muted;
