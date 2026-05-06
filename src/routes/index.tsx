@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import { Notebook } from "@/components/Notebook";
+import { Envelope } from "@/components/Envelope";
 import { format } from "date-fns";
 import { CalendarIcon, Heart, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -236,13 +237,14 @@ function StepDone({
 }
 
 function Index() {
-  const [step, setStep] = useState<"notebook" | "ask" | "pick" | "done">("notebook");
+  const [step, setStep] = useState<"envelope" | "notebook" | "ask" | "pick" | "done">("envelope");
   const [details, setDetails] = useState<{ date: Date; time: string; place: string } | null>(null);
 
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-romantic px-4 py-12">
       <FloatingHearts />
       <div className="relative z-10 flex w-full justify-center">
+        {step === "envelope" && <Envelope onOpen={() => setStep("notebook")} />}
         {step === "notebook" && <Notebook onDone={() => setStep("ask")} />}
         {step === "ask" && <StepAsk onYes={() => setStep("pick")} />}
         {step === "pick" && (
