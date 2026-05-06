@@ -244,6 +244,7 @@ function Index() {
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-romantic px-4 py-12">
       <FloatingHearts />
       <div className="relative z-10 flex w-full justify-center">
+        {step === "envelope" && <Envelope onOpen={() => setStep("notebook")} />}
         {step === "notebook" && <Notebook onDone={() => setStep("ask")} />}
         {step === "ask" && <StepAsk onYes={() => setStep("pick")} />}
         {step === "pick" && (
