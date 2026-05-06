@@ -1,5 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { Heart, ChevronRight } from "lucide-react";
+import { Heart, ChevronRight, Volume2, VolumeX } from "lucide-react";
+
+// Drop your own .mp3 files into /public/music/ with these names to customize.
+// Each page plays its own track; falls back silently if a file is missing.
+const MUSIC: string[] = [
+  "/music/page-1.mp3",
+  "/music/page-2.mp3",
+  "/music/page-3.mp3",
+  "/music/page-4.mp3",
+  "/music/page-5.mp3",
+  "/music/page-6.mp3",
+  "/music/page-7.mp3",
+];
 
 const PAGES: { title?: string; body: string; doodle?: string; photo?: boolean }[] = [
   {
