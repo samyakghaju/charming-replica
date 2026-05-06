@@ -8,9 +8,6 @@ const MUSIC: string[] = [
   "/music/page-2.mp3",
   "/music/page-3.mp3",
   "/music/page-4.mp3",
-  "/music/page-5.mp3",
-  "/music/page-6.mp3",
-  "/music/page-7.mp3",
 ];
 
 const PAGES: { title?: string; body: string; doodle?: string; photo?: boolean }[] = [
