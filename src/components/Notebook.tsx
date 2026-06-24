@@ -10,17 +10,49 @@ const MUSIC: string[] = [
   "/music/page-4.mp3",
 ];
 
-const PAGES: { title?: string; body: string; doodle?: string; photo?: boolean }[] = [
+// 📸 Replace these URLs with your own photos (any image URL works).
+const IMG = {
+  intro: "https://placehold.co/600x400/fecdd3/be123c?text=Replace+Me+%F0%9F%92%97",
+  smile: "https://placehold.co/600x400/fbcfe8/9d174d?text=Your+Photo+Here",
+  strong: "https://placehold.co/600x400/fda4af/881337?text=Replace+Me",
+  future: "https://placehold.co/600x400/f9a8d4/831843?text=Us+%E2%9C%A8",
+  closing: "https://placehold.co/600x400/fecaca/9f1239?text=%F0%9F%8C%B9",
+};
+
+const PAGES: { title?: string; body: string; image?: string }[] = [
   {
     title: "for angel 🌹",
-    body: "tho we met on internet and have never met irl, i am very sure of you, i love the way you think, the way you talk, the way you are positive and most of all, how strong you are, angel you literally do put a smile on my face daily, i love talking to you, i love your voice, i love your smile, i love your eyes, to be honest i love everything about you,",
+    body: "Even though we met on the internet and have never met in person, I am surprisingly sure about you. In a world where people constantly come and go, you are one of the very few people who have genuinely stayed in my thoughts every single day.",
+    image: IMG.intro,
   },
   {
-    body: "this might be the first time in years that i have ever tried with someone, yk it to that im not such an emotional person so i dont do no relationships and all because all i think is about careers, but i feel different from you, i genuinely want to make you happy, i would like to grow with you.",
+    body: "I love the way you think, the way you see the world, and the way you always try to find something positive even when things are difficult. I admire how strong you are. You have been through things that could have easily broken someone, yet you continue to move forward with so much courage. That is one of the many reasons why I look up to you.",
+    image: IMG.strong,
+  },
+  {
+    body: "You honestly put a smile on my face every day. No matter how busy, stressed, or focused I am, seeing your message instantly makes my day better. I love talking to you. I love hearing your voice. I love your smile, your eyes, your laugh, and the little things about you that you probably don't even realize make you special. To be honest, I love everything about you.",
+    image: IMG.smile,
+  },
+  {
+    body: "What makes this even more meaningful is that this is something I never expected for myself. You know that I'm not the most emotional person. I've always been focused on my goals, my future, and my career. Relationships were never really something I spent much time thinking about because I always believed there were more important things to focus on. But with you, it feels different.",
+  },
+  {
+    body: "For the first time in years, I actually wanted to try. I wanted to open up. I wanted to let someone in. You made me feel something I hadn't felt in a very long time. Not because you forced it, but because being with you feels natural. It feels right.",
+  },
+  {
+    body: "I genuinely care about you. Your happiness matters to me. When you're happy, I find myself happy too. When you're struggling, I wish I could be there to make things easier for you. I want to support you through your good days and your bad days, celebrate your wins, and remind you how amazing you are whenever you forget.",
+  },
+  {
+    body: "I don't just like the idea of you. I like you for who you are. Your strengths, your flaws, your dreams, your fears, your personality, everything that makes you uniquely you. I know we've never met in person, but somehow you've become one of the most important people in my life. Distance doesn't change how real my feelings are. If anything, it makes me appreciate every conversation, every call, every moment we spend together even more.",
+  },
+  {
+    body: "I don't know exactly what the future holds, but I do know one thing: I want you in it. I want to grow with you, learn with you, support you, and build something meaningful together. I want to be someone who brings peace, comfort, and happiness into your life the same way you've brought it into mine.",
+    image: IMG.future,
   },
   {
     title: "— samyak",
-    body: "p.s. i meant every word.",
+    body: "Thank you for being you. Thank you for making ordinary days feel special. And thank you for making me believe that sometimes the most unexpected people can end up meaning the most.\n\nI love you, angel. More than I can put into words.",
+    image: IMG.closing,
   },
 ];
 
@@ -147,26 +179,23 @@ export function Notebook({ onDone }: { onDone: () => void }) {
                 )}
               </p>
 
-              {current.doodle && done && (
+              {current.image && done && (
                 <img
-                  src={current.doodle}
+                  src={current.image}
                   alt=""
-                  className="h-24 w-24 shrink-0 rotate-6 animate-fade-in object-contain"
+                  className="hidden md:block h-40 w-32 shrink-0 rotate-3 animate-fade-in rounded-sm border-4 border-white object-cover shadow-romantic"
                 />
               )}
             </div>
 
-            {current.photo && done && (
-              <div className="mt-8 flex justify-center animate-fade-in">
-                <div className="rotate-[-4deg] rounded-sm bg-white p-3 pb-10 shadow-romantic">
+            {current.image && done && (
+              <div className="mt-8 flex justify-center md:hidden animate-fade-in">
+                <div className="rotate-[-4deg] rounded-sm bg-white p-3 pb-8 shadow-romantic">
                   <img
-                    src="/notebook/polaroid.png"
-                    alt="for angel"
-                    className="h-48 w-48 object-cover"
+                    src={current.image}
+                    alt=""
+                    className="h-44 w-56 object-cover"
                   />
-                  <p className="mt-2 text-center font-display italic text-rose-700">
-                    for angel 🌹
-                  </p>
                 </div>
               </div>
             )}
