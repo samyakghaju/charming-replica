@@ -119,134 +119,54 @@ function StepAsk({ onYes }: { onYes: () => void }) {
   );
 }
 
-function StepPick({
-  onConfirm,
-}: {
-  onConfirm: (d: { date: Date; time: string; place: string }) => void;
-}) {
-  const [date, setDate] = useState<Date>();
-  const [time, setTime] = useState<string>("");
-  const [place, setPlace] = useState<string>("");
-
-  const ready = date && time;
-
+function StepCongrats() {
   return (
-    <Card className="w-full max-w-lg border-primary/20 bg-card/80 p-8 backdrop-blur-sm shadow-romantic">
-      <div className="text-center">
-        <Sparkles className="mx-auto h-10 w-10 text-primary" />
-        <h2 className="mt-3 font-display text-3xl font-bold">Yay! When are you free?</h2>
-        <p className="mt-2 text-sm text-muted-foreground">Pick a day, a time, and where you'd like to go.</p>
+    <Card className="w-full max-w-lg border-primary/20 bg-card/80 p-10 text-center backdrop-blur-sm shadow-romantic">
+      <div className="relative mx-auto mb-4 inline-block">
+        <div className="absolute inset-0 animate-pulse-glow rounded-full bg-primary/40 blur-2xl" />
+        <PartyPopper className="relative h-16 w-16 text-primary animate-heartbeat" />
       </div>
+      <h2 className="font-display text-4xl font-bold">Congratulations to us! 🎉</h2>
+      <p className="mt-3 text-muted-foreground">
+        You said yes. I am the luckiest. Here's to us, angel — to every conversation,
+        every laugh, and every moment still to come. 💕
+      </p>
 
-      <div className="mt-8 space-y-5">
-        <div>
-          <label className="mb-2 block text-sm font-medium">Date</label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                className={cn(
-                  "w-full justify-start text-left font-normal",
-                  !date && "text-muted-foreground"
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, "PPP") : "Pick a date"}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                disabled={(d) => d < new Date(new Date().setHours(0, 0, 0, 0))}
-                initialFocus
-                className={cn("p-3 pointer-events-auto")}
-              />
-            </PopoverContent>
-          </Popover>
-        </div>
-
-        <div>
-          <label className="mb-2 block text-sm font-medium">Time</label>
-          <Select value={time} onValueChange={setTime}>
-            <SelectTrigger>
-              <SelectValue placeholder="Pick a time" />
-            </SelectTrigger>
-            <SelectContent>
-              {TIME_SLOTS.map((t) => (
-                <SelectItem key={t} value={t}>
-                  {t}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div>
-          <label className="mb-2 block text-sm font-medium">Where? (optional)</label>
-          <Input
-            placeholder="That little café you love…"
-            value={place}
-            onChange={(e) => setPlace(e.target.value)}
-          />
-        </div>
-
-        <Button
-          size="lg"
-          disabled={!ready}
-          onClick={() => onConfirm({ date: date!, time, place })}
-          className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-romantic"
-        >
-          It's a date 💕
-        </Button>
+      <div className="mt-8 rounded-xl border border-primary/20 bg-secondary/40 p-6">
+        <Sparkles className="mx-auto mb-2 h-6 w-6 text-primary" />
+        <p className="font-display text-2xl italic text-rose-700">us. officially.</p>
+        <p className="mt-2 text-sm text-muted-foreground">— samyak & angel</p>
       </div>
     </Card>
   );
 }
 
-function StepDone({
-  details,
-  onBack,
-}: {
-  details: { date: Date; time: string; place: string };
-  onBack: () => void;
-}) {
+function StepRejected({ onReset }: { onReset: () => void }) {
   return (
     <Card className="w-full max-w-lg border-primary/20 bg-card/80 p-10 text-center backdrop-blur-sm shadow-romantic">
-      <div className="relative mx-auto mb-4 inline-block">
-        <div className="absolute inset-0 animate-pulse-glow rounded-full bg-primary/40 blur-2xl" />
-        <Heart className="relative h-16 w-16 text-primary animate-heartbeat" fill="currentColor" />
-      </div>
-      <h2 className="font-display text-4xl font-bold">It's a date!</h2>
-      <p className="mt-2 text-muted-foreground">I can't wait. Counting the minutes already.</p>
-
-      <div className="mt-8 space-y-2 rounded-xl border border-primary/20 bg-secondary/40 p-6 text-left">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground">When</p>
-        <p className="text-lg font-semibold">
-          {format(details.date, "EEEE, MMMM d, yyyy")} at {details.time}
-        </p>
-        {details.place && (
-          <>
-            <p className="mt-3 text-xs uppercase tracking-widest text-muted-foreground">Where</p>
-            <p className="text-lg font-semibold">{details.place}</p>
-          </>
-        )}
-      </div>
-
+      <p className="font-display text-3xl">okay… 🥲</p>
+      <p className="mt-3 text-muted-foreground">
+        I'll always be here, angel. No pressure, ever.
+      </p>
       <button
-        onClick={onBack}
+        onClick={onReset}
         className="mt-6 text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
       >
-        Change details
+        start over
       </button>
     </Card>
   );
 }
 
 function Index() {
-  const [step, setStep] = useState<"envelope" | "notebook" | "ask" | "pick" | "done">("envelope");
-  const [details, setDetails] = useState<{ date: Date; time: string; place: string } | null>(null);
+  const [step, setStep] = useState<"envelope" | "notebook" | "ask" | "yes" | "no">("envelope");
+
+  useEffect(() => {
+    try {
+      const log = JSON.parse(localStorage.getItem("angel-letter-responses") || "[]");
+      if (log.length) console.log("💌 Past responses:", log);
+    } catch {}
+  }, []);
 
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-romantic px-4 py-12">
@@ -254,19 +174,18 @@ function Index() {
       <div className="relative z-10 flex w-full justify-center">
         {step === "envelope" && <Envelope onOpen={() => setStep("notebook")} />}
         {step === "notebook" && <Notebook onDone={() => setStep("ask")} />}
-        {step === "ask" && <StepAsk onYes={() => setStep("pick")} />}
-        {step === "pick" && (
-          <StepPick
-            onConfirm={(d) => {
-              setDetails(d);
-              setStep("done");
+        {step === "ask" && (
+          <StepAsk
+            onYes={() => {
+              recordResponse("yes");
+              setStep("yes");
             }}
           />
         )}
-        {step === "done" && details && (
-          <StepDone details={details} onBack={() => setStep("pick")} />
-        )}
+        {step === "yes" && <StepCongrats />}
+        {step === "no" && <StepRejected onReset={() => setStep("ask")} />}
       </div>
     </main>
   );
 }
+
