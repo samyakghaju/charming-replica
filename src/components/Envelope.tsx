@@ -26,8 +26,8 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
           }`}
           style={{ top: opening ? "1rem" : "1.5rem" }}
         >
-          <p className="text-sm">to: simisimi 🌹</p>
-          <p className="mt-1 text-xs text-rose-500">from: yumyum</p>
+          <p className="text-sm">to: angel 🌹</p>
+          <p className="mt-1 text-xs text-rose-500">from: samyak</p>
         </div>
 
         {/* Bottom flap */}

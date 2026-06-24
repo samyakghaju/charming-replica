@@ -12,52 +12,15 @@ const MUSIC: string[] = [
 
 const PAGES: { title?: string; body: string; doodle?: string; photo?: boolean }[] = [
   {
-    title: "hi simisimi 🐻",
-    body: "open this. i wrote you something.\n(don't peek at the end yet.)\n\nseriously. don't scroll. i'll know.",
+    title: "for angel 🌹",
+    body: "tho we met on internet and have never met irl, i am very sure of you, i love the way you think, the way you talk, the way you are positive and most of all, how strong you are, angel you literally do put a smile on my face daily, i love talking to you, i love your voice, i love your smile, i love your eyes, to be honest i love everything about you,",
   },
   {
-    body: "okay so. i've been thinking. like, a lot. mostly about you. mostly at 2am. mostly about the way you type — the little things you say and how you say them. i don't know how someone can make a screen feel warm but you somehow do that.\n\nyou ever talk to someone online and it just feels different? like there's something on the other side that's actually, genuinely real? that's you. that's what talking to you feels like.",
-    doodle: "/notebook/sticker-bear.png",
+    body: "this might be the first time in years that i have ever tried with someone, yk it to that im not such an emotional person so i dont do no relationships and all because all i think is about careers, but i feel different from you, i genuinely want to make you happy, i would like to grow with you.",
   },
   {
-    body: "we've only talked through a screen. i know that. and maybe that sounds like 'not enough' to some people.\n\nbut pablo neruda once wrote — 'i want to do with you what spring does with the cherry trees.' and i read that and thought — yeah. that. i want to bring something out in you. i want to be something good in your life. even from here. even like this.\n\nyou already make my days better just by existing in them.",
-  },
-  {
-    body: "i want to know more about you. and i mean that properly, not just your favorite color or whatever.\n\ni want to know what makes you laugh at 1am. what song you've had on repeat for three weeks. what you think about right before you fall asleep. what made you who you are.\n\nsocrates said that 'the unexamined life is not worth living' — and i think about that a lot. but also — i want to examine your life with you. slowly. over time. all of it.",
-    doodle: "/notebook/sticker-heart.png",
-  },
-  {
-    title: "a tiny confession from yumyum",
-    body: "here's the part i practiced.\n\ni know you've been hurt before. i don't know the whole story and i won't pretend to. but i can see it — the way you hold back sometimes, the way you don't let things land too easy. and i get it. when someone breaks your trust, you rebuild walls. that makes sense.\n\nbut i want you to know something — and i mean this genuinely, not as a line — i know i can treat you better. not because i'm perfect. but because you deserve someone who actually tries. and i want to be that.",
-    photo: true,
-  },
-  {
-    body: "simone de beauvoir wrote — 'there is something in the nature of love that demands development, a searching out of the other.'\n\nand that's exactly it. i'm not saying i have you figured out. i'm saying i want to figure you out. every part. the loud parts, the quiet parts, the parts you don't show people right away.\n\ni want to know the version of you that exists at 3am. the version that's tired and real and not performing anything. i think that version is incredible.",
-    doodle: "/notebook/sticker-bear.png",
-  },
-  {
-    body: "here's what i want, honestly.\n\ni want the boring stuff. i want to be the person you send a random meme to at noon because you knew i'd get it. i want to be on the other side of a voice note that's way too long and not mind a single second of it. i want grocery list conversations and 'what should i eat' debates and falling asleep mid-call.\n\nthe little ordinary things. with you specifically. because ordinary things stop being ordinary when it's the right person.",
-    doodle: "/notebook/sticker-heart.png",
-  },
-  {
-    body: "rainer maria rilke wrote — 'once the realization is accepted that even between the closest human beings infinite distances continue, a wonderful living side by side can grow.'\n\ni think about that a lot when it comes to you. we don't have to have everything figured out. we don't have to rush or know where this goes. i just want to keep talking. keep knowing you. keep being someone you feel safe enough to be honest with.\n\nthat's all. no pressure in that. just — i like where this is going.",
-  },
-  {
-    body: "and simi — you are so damn beautiful. inside and out. and i say that having only known you through a screen, which should tell you something.\n\nthe way you think, the way you phrase things, the way you respond — there's something so genuine about you. genuinely beautiful. not in a hollow compliment way. in a 'i notice it and i keep noticing it' way.\n\ni don't think you hear that enough. and i don't think the people before me said it the way it was supposed to be said.",
-    doodle: "/notebook/sticker-heart.png",
-  },
-  {
-    title: "okay. the brave page.",
-    body: "maybe it's a little soon to say all of this. maybe i'm supposed to play it cool for longer and not let on that i think about our conversations way more than i probably should.\n\nbut albert camus wrote — 'the only way to deal with an unfree world is to become so absolutely free that your very existence is an act of rebellion.' and okay that's not directly about feelings but — i think there's something brave about being honest. about saying the thing instead of sitting on it forever.\n\nso here it is: i really like you. i want to know more of you. and i think, if you let me, i could be really good to you.",
-    photo: true,
-  },
-  {
-    body: "no pressure. none at all. i'm not asking for anything big or scary.\n\njust — keep talking to me. tell me something i don't know about you. let me keep showing up in your notifications like a persistent little bear who genuinely means well.\n\nbecause the truth is — even just getting to talk to you is something. and i don't take that lightly.",
-    doodle: "/notebook/sticker-bear.png",
-  },
-  {
-    title: "— yumyum 🐻",
-    body: "p.s. the tiny bear is a self portrait. he is nervous but sincere.\np.p.s. i really, really like you, simisimi.\np.p.p.s. okay closing the journal now before i write something even more embarrassing.",
+    title: "— samyak",
+    body: "p.s. i meant every word.",
   },
 ];
 
@@ -198,18 +161,18 @@ export function Notebook({ onDone }: { onDone: () => void }) {
                 <div className="rotate-[-4deg] rounded-sm bg-white p-3 pb-10 shadow-romantic">
                   <img
                     src="/notebook/polaroid.png"
-                    alt="for simi"
+                    alt="for angel"
                     className="h-48 w-48 object-cover"
                   />
                   <p className="mt-2 text-center font-display italic text-rose-700">
-                    for simi 🌹
+                    for angel 🌹
                   </p>
                 </div>
               </div>
             )}
 
             <div className="mt-10 flex items-center justify-between text-sm text-rose-400">
-              <span className="italic">— yumyum</span>
+              <span className="italic">— samyak</span>
               <span>{page + 1} / {PAGES.length}</span>
             </div>
           </div>
