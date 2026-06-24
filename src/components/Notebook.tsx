@@ -12,11 +12,11 @@ const MUSIC: string[] = [
 
 // 📸 Replace these URLs with your own photos (any image URL works).
 const IMG = {
-  intro: "https://placehold.co/600x400/fecdd3/be123c?text=Replace+Me+%F0%9F%92%97",
-  smile: "https://placehold.co/600x400/fbcfe8/9d174d?text=Your+Photo+Here",
-  strong: "https://placehold.co/600x400/fda4af/881337?text=Replace+Me",
-  future: "https://placehold.co/600x400/f9a8d4/831843?text=Us+%E2%9C%A8",
-  closing: "https://placehold.co/600x400/fecaca/9f1239?text=%F0%9F%8C%B9",
+  intro: "https://imgur.com/LWhLTsd",
+  smile: "https://imgur.com/LXmGFb7",
+  strong: "https://imgur.com/sC2ipK4",
+  future: "https://imgur.com/A64FFGe",
+  closing: "https://imgur.com/t1gxA2p",
 };
 
 const PAGES: { title?: string; body: string; image?: string }[] = [
