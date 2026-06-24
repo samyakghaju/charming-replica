@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const TIME_SLOTS: string[] = [];
+
 
 function FloatingHearts() {
   const hearts = Array.from({ length: 14 });
