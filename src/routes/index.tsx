@@ -1,16 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Notebook } from "@/components/Notebook";
 import { Envelope } from "@/components/Envelope";
-import { format } from "date-fns";
-import { CalendarIcon, Heart, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
+import { Heart, Sparkles, PartyPopper } from "lucide-react";
 import { Card } from "@/components/ui/card";
+
+type Response = { answer: "yes" | "no"; at: string };
+
+function recordResponse(answer: "yes" | "no") {
+  try {
+    const key = "angel-letter-responses";
+    const log: Response[] = JSON.parse(localStorage.getItem(key) || "[]");
+    log.push({ answer, at: new Date().toISOString() });
+    localStorage.setItem(key, JSON.stringify(log));
+    // Also log to console so you can see it in DevTools
+    console.log("💌 Response recorded:", answer, "— all responses:", log);
+  } catch (e) {
+    console.warn("Could not record response", e);
+  }
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,7 +30,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const TIME_SLOTS = ["6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM", "8:30 PM", "9:00 PM"];
+const TIME_SLOTS: string[] = [];
 
 function FloatingHearts() {
   const hearts = Array.from({ length: 14 });
