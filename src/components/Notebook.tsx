@@ -12,11 +12,11 @@ const MUSIC: string[] = [
 
 // 📸 Replace these URLs with your own photos (any image URL works).
 const IMG = {
-  intro: "https://imgur.com/LWhLTsd",
-  smile: "https://imgur.com/LXmGFb7",
-  strong: "https://imgur.com/sC2ipK4",
-  future: "https://imgur.com/A64FFGe",
-  closing: "https://imgur.com/t1gxA2p",
+  intro: "https://i.imgur.com/m4WDrCj.jpeg",
+  smile: "https://i.imgur.com/Mec54yj.jpeg",
+  strong: "https://i.imgur.com/1yh9Igs.jpeg",
+  future: "https://i.imgur.com/94I7lHB.jpeg",
+  closing: "https://i.imgur.com/SUPO06i.jpeg",
 };
 
 const PAGES: { title?: string; body: string; image?: string }[] = [
