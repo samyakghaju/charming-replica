@@ -161,18 +161,18 @@ export function Notebook({ onDone }: { onDone: () => void }) {
                 <div className="rotate-[-4deg] rounded-sm bg-white p-3 pb-10 shadow-romantic">
                   <img
                     src="/notebook/polaroid.png"
-                    alt="for simi"
+                    alt="for angel"
                     className="h-48 w-48 object-cover"
                   />
                   <p className="mt-2 text-center font-display italic text-rose-700">
-                    for simi 🌹
+                    for angel 🌹
                   </p>
                 </div>
               </div>
             )}
 
             <div className="mt-10 flex items-center justify-between text-sm text-rose-400">
-              <span className="italic">— yumyum</span>
+              <span className="italic">— samyak</span>
               <span>{page + 1} / {PAGES.length}</span>
             </div>
           </div>
