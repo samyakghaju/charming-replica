@@ -34,14 +34,34 @@ const IMG = {
   angel4: "https://i.imgur.com/5Eu32hi.png",
 };
 
-// 🎵 Swap these 5 slots with DIRECT audio file links (.mp3/.m4a/.wav).
-// Spotify/YouTube links will NOT work here — see the chat for hosting options.
+// 🎵 Place these mp3 files in your project's `public/songs/` folder,
+// with filenames matching exactly (case-sensitive).
 const AUDIO: { title: string; artist: string; src: string }[] = [
-  { title: "Song One", artist: "Samyak", src: "https://github.com/samyakghaju/charming-replica/raw/refs/heads/main/Mac%20Miller%20-%20Cinderella%20(feat.%20Ty%20Dolla%20$ign).mp3" },
-  { title: "Song Two", artist: "Samyak", src: "https://github.com/samyakghaju/charming-replica/raw/refs/heads/main/Mac%20Miller%20-%20Cinderella%20(feat.%20Ty%20Dolla%20$ign).mp3" },
-  { title: "Song Three", artist: "Samyak", src: "https://github.com/samyakghaju/charming-replica/raw/refs/heads/main/Mac%20Miller%20-%20Cinderella%20(feat.%20Ty%20Dolla%20$ign).mp3" },
-  { title: "Song Four", artist: "Samyak", src: "https://github.com/samyakghaju/charming-replica/raw/refs/heads/main/Mac%20Miller%20-%20Cinderella%20(feat.%20Ty%20Dolla%20$ign).mp3" },
-  { title: "Song Five", artist: "Samyak", src: "https://github.com/samyakghaju/charming-replica/raw/refs/heads/main/Mac%20Miller%20-%20Cinderella%20(feat.%20Ty%20Dolla%20$ign).mp3" },
+  {
+    title: "I Love You",
+    artist: "Anil Singh",
+    src: "/songs/I LOVE YOU - Anil Singh  Nepali Evergreen Hit Pop Song.mp3",
+  },
+  {
+    title: "Cinderella",
+    artist: "Mac Miller (feat. Ty Dolla $ign)",
+    src: "/songs/Mac Miller - Cinderella (feat. Ty Dolla $ign).mp3",
+  },
+  {
+    title: "Sienna",
+    artist: "The Marías",
+    src: "/songs/The Marías  Sienna.mp3",
+  },
+  {
+    title: "No. 9",
+    artist: "YoungBoy Never Broke Again",
+    src: "/songs/YoungBoy Never Broke Again - No. 9 (Official Audio).mp3",
+  },
+  {
+    title: "Come And See Me",
+    artist: "PARTYNEXTDOOR (ft. Drake)",
+    src: "/songs/PARTYNEXTDOOR - Come And See Me ft. Drake (Audio).mp3",
+  },
 ];
 
 type Sticker = { text: string; rotate?: number; tone?: "pink" | "red" | "yellow" };
@@ -663,7 +683,7 @@ function MusicPlayer() {
     <div className="fixed bottom-4 left-1/2 z-30 w-[92%] max-w-sm -translate-x-1/2">
       <audio
         ref={audioRef}
-        src={track.src}
+        src={encodeURI(track.src)}
         onEnded={next}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
