@@ -37,11 +37,11 @@ const IMG = {
 // 🎵 Swap these 5 slots with DIRECT audio file links (.mp3/.m4a/.wav).
 // Spotify/YouTube links will NOT work here — see the chat for hosting options.
 const AUDIO: { title: string; artist: string; src: string }[] = [
-  { title: "Song One", artist: "Artist One", src: "" },
-  { title: "Song Two", artist: "Artist Two", src: "" },
-  { title: "Song Three", artist: "Artist Three", src: "" },
-  { title: "Song Four", artist: "Artist Four", src: "" },
-  { title: "Song Five", artist: "Artist Five", src: "" },
+  { title: "Song One", artist: "Samyak", src: "https://github.com/samyakghaju/charming-replica/raw/refs/heads/main/Mac%20Miller%20-%20Cinderella%20(feat.%20Ty%20Dolla%20$ign).mp3" },
+  { title: "Song Two", artist: "Samyak", src: "https://github.com/samyakghaju/charming-replica/raw/refs/heads/main/Mac%20Miller%20-%20Cinderella%20(feat.%20Ty%20Dolla%20$ign).mp3" },
+  { title: "Song Three", artist: "Samyak", src: "https://github.com/samyakghaju/charming-replica/raw/refs/heads/main/Mac%20Miller%20-%20Cinderella%20(feat.%20Ty%20Dolla%20$ign).mp3" },
+  { title: "Song Four", artist: "Samyak", src: "https://github.com/samyakghaju/charming-replica/raw/refs/heads/main/Mac%20Miller%20-%20Cinderella%20(feat.%20Ty%20Dolla%20$ign).mp3" },
+  { title: "Song Five", artist: "Samyak", src: "https://github.com/samyakghaju/charming-replica/raw/refs/heads/main/Mac%20Miller%20-%20Cinderella%20(feat.%20Ty%20Dolla%20$ign).mp3" },
 ];
 
 type Sticker = { text: string; rotate?: number; tone?: "pink" | "red" | "yellow" };
