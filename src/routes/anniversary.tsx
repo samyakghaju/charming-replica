@@ -1,6 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { Heart, ChevronLeft, ChevronRight, Lock, Star, Sparkles } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import {
+  Heart,
+  ChevronLeft,
+  ChevronRight,
+  Lock,
+  Star,
+  Sparkles,
+  Play,
+  Pause,
+  SkipBack,
+  SkipForward,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 
 export const Route = createFileRoute("/anniversary")({
   head: () => ({
@@ -21,13 +34,21 @@ const IMG = {
   angel4: "https://i.imgur.com/5Eu32hi.png",
 };
 
+// 🎵 Swap these 5 slots with DIRECT audio file links (.mp3/.m4a/.wav).
+// Spotify/YouTube links will NOT work here — see the chat for hosting options.
+const AUDIO: { title: string; artist: string; src: string }[] = [
+  { title: "Song One", artist: "Artist One", src: "" },
+  { title: "Song Two", artist: "Artist Two", src: "" },
+  { title: "Song Three", artist: "Artist Three", src: "" },
+  { title: "Song Four", artist: "Artist Four", src: "" },
+  { title: "Song Five", artist: "Artist Five", src: "" },
+];
+
 type Sticker = { text: string; rotate?: number; tone?: "pink" | "red" | "yellow" };
 type PhotoSticker = { src: string; caption?: string; rotate?: number; hearts?: Sticker[] };
 type Doodle = "hearts" | "stars" | "rainbow" | "girl" | "icecream" | "mix";
 
 type ScrapPage = {
-  title?: string;
-  kicker?: string;
   paragraphs: string[];
   stickers?: Sticker[];
   photos?: PhotoSticker[];
@@ -37,25 +58,28 @@ type ScrapPage = {
 // ===== content =====
 const PAGES: ScrapPage[] = [
   {
-    kicker: "chapter one",
-    title: "All just for you",
     paragraphs: [
-      "Hi Angel, my beloved. It's been 30 days since we committed to each other, and this might be the best 30 days of my life — there wasn't a single day that went by where i felt low. You're just the bestest girlfriend and i hope i can be the bestest boyfriend to you too. I love you baby, i'm in love with you, and i always will be.",
-      "I feel your love. From the moment i felt your heart and soul, when we hadn't even met in real life, something inside me recognized you. I know you felt it too. It wasn't just attraction, it was like finding something familiar, as if i'd known you angel for a long, long time in another life. You felt like home to me.",
+      "Hi Angel, My beloved. Its been 30 days since we have commited to each other ani this might be the 30 days ever of my life where there wasn't a single day that went by where i felt low, your just the bestest girlfriend and i hope that i can be the bestest boyfriend to you too. I love you baby, im in love with you and i always will.",
+      "i feel your love. from the moment i felt your heart and soul which was when we didn't even meet in real life, something inside of me recognized you. i know you felt it too. it wasn't just attraction, it was like finding something familiar as if i have been knowing you angel for a long long time in another time, another life. you felt like home to me.",
     ],
     stickers: [{ text: "you feel like home 🏡", rotate: -4 }],
     photos: [
-      { src: IMG.cover, caption: "my angel 🌹", rotate: -4, hearts: [
-        { text: "you are the reason i'm smiling", rotate: -6 },
-        { text: "mine 💗", rotate: 4, tone: "red" },
-      ]},
+      {
+        src: IMG.cover,
+        caption: "my angel 🌹",
+        rotate: -4,
+        hearts: [
+          { text: "you are the reason i'm smiling", rotate: -6 },
+          { text: "mine 💗", rotate: 4, tone: "red" },
+        ],
+      },
     ],
     doodles: ["hearts", "girl"],
   },
   {
     paragraphs: [
-      "Your voice is my favourite sound in this whole world. I love hearing your voice even when i don't have anything to say. Your voice brings calmness to me, not only calmness though, it raises something else too (that's a topic for another time).",
-      "Just know i love your voice, and the way you tease me with it when you say mhmm — AHHHHHH, you don't know how much i love your voice. I can't even say. It's the bestesttt sound i get to hear.",
+      "your voice is my favourite sound in this whole world. i love hearing your voice even when i dont have anything to say. your voice brings calmness to me. not only calmness tho it raises smth else too, thats a topic for smth other time.",
+      "j hos js know i love your voice and the way you tease me with your voice when you say mhmm, AHHHHHH ydkkk how much i love your voice, its js i cant say, its the bestesttt sound for me to hear.",
     ],
     stickers: [
       { text: "mhmm 🫶", rotate: 6, tone: "red" },
@@ -65,66 +89,66 @@ const PAGES: ScrapPage[] = [
   },
   {
     paragraphs: [
-      "You show me what real love feels like. Instead of the short-term relationships and shit, you actually show me what real love is. Not toxic, no pressure, no nothing, just you, being real. I love how real you are. Omg, i just love everything about you my beloved angel.",
-      "Every word you spoke, every silence we shared has left a mark on me. You're the first thing that has ever made me feel completely at peace. I think that's why i fell in love with you.",
+      "you show me what real love feels like, instead of em short term relationships and shits, you acc do show me whats a real love, not toxic, no pressure, no nothing, its jus you being real, i love how real you are tho, omg i js love everything about you my beloved angel.",
+      "every word you spoke, every silence we shared has left a mark on me. your the first thing that has ever made me feel like completely at peace. i think thats why i fell in love with you,",
     ],
     photos: [
-      { src: IMG.angel1, caption: "peace looks like you", rotate: 5, hearts: [
-        { text: "real love ♡", rotate: -8 },
-      ]},
+      {
+        src: IMG.angel1,
+        caption: "peace looks like you",
+        rotate: 5,
+        hearts: [{ text: "real love ♡", rotate: -8 }],
+      },
     ],
     doodles: ["rainbow"],
   },
   {
     paragraphs: [
-      "With others, silence feels boring and my avoidant tendencies come up and make me leave. But with you, it doesn't matter. Even in calls, the silence doesn't bore me. I think that's why i fell in love with you, because of how your presence calms me. It didn't matter what else was going on in my life. With you, i just felt… i felt at home. I felt at peace. I was like \"yoooo so eso po hudo raicha maya pirati vaneko omg\". So this is what a soulmate actually feels like.",
+      "with others silence feels boring and i get my avoidant tendencies up making me leave em, but with you it doesn't matter, even in calls, the silence doesn't bore me, i think thats why i fell in love with you cause of how your presence calms me, it didn't matter what else was going on in my life. with you, i just felt... i felt at home. i felt at peace. i was like \"yoooo so eso po hudo raicha maya pirati vaneko omg\". so this is what a soulmate actually feels like.",
     ],
-    stickers: [
-      { text: "soulmate 💫", rotate: -5, tone: "pink" },
-    ],
+    stickers: [{ text: "soulmate 💫", rotate: -5, tone: "pink" }],
     doodles: ["stars", "icecream"],
   },
   {
     paragraphs: [
-      "You don't just live in my heart, you've built a home there. You've filled spaces i didn't even know were empty, because i never wanted any relationships. You've softened the walls i built out of fear for my career and taught me that love doesn't have to hurt to be real.",
-      "I don't look at you and see a chapter. I look at you and see the whole story. Your loud laughters, the soft touch, the way you play with my hairs, the way your hands move in my back, the kind of love that gives me hope and warmth.",
+      "you acc dont jus live in my heart, youve built a home there. youve filled spaces i didn't even know were empty cause i never wanted any relationships. youve softened my walls i built for a fear of my career and taught me that love doesn't have to hurt to be real.",
+      "i don look at you and see a chapter. i look at you and see the whole story. your loud laughters, the soft touch, the way you play with my hairs, the way your hands move in my back, the kind of love that gives me hope and warmth.",
     ],
     stickers: [{ text: "the whole story 📖", rotate: 3, tone: "yellow" }],
     photos: [
-      { src: IMG.angel2, caption: "the whole story ♡", rotate: -6, hearts: [
-        { text: "home", rotate: 6, tone: "red" },
-      ]},
+      {
+        src: IMG.angel2,
+        caption: "the whole story ♡",
+        rotate: -6,
+        hearts: [{ text: "home", rotate: 6, tone: "red" }],
+      },
     ],
     doodles: ["hearts", "rainbow"],
   },
   {
     paragraphs: [
-      "With you, love is not about grand moments. It's in the little things. The way you check on me, the way you never miss to say joksjoks after teasing me, how fast you reassure me, how you never want me to overthink anything, the way your presence alone makes everything feel okay.",
-      "And sometimes i wonder how i ever lived before i knew you, because now even an hour without your voice feels incomplete. Even the best moments feel like they're missing something if you're not in them, so i try to record or call or text you when anything interesting or fun happens. Whether it's in college during an event, in the gaming zone with a fun game, or in office when something fun is going on.",
-      "You've become the rhythm of my life, the heartbeat beneath everything i do. And loving you? It's the one thing that's never felt confusing. So if you're ever unsure, if you ever doubt how much you mean to me, just remember this: you are everything i never knew i was waiting for, and i'm never letting go.",
+      "with you, love is not about grand moments. its in the little things. the way you check on me, the way you never miss to say joksjoks after teasing me i love how fast you reassure me, i love how you never want me to overthink in anything, the way your presence alone makes everything feels okay.",
+      "and sometimes i wonder how i ever lived before i knew you, because now, even an hour without your voice feels incomplete. even the best moments feel like theyre missing something if your not in them, so i try to record or call or text you when anything interesting or fun happens let it be when im in my college and there is an event, let it be when im in gaming zone and want to show you a fun game, let it be in office when there is something fun going on.",
+      "youve become the rhythm of my life, the heartbeat beneath everything i do. and loving you, its the one thing thats never felt confusing. so if your ever unsure, if you ever doubt how much you mean to me, just remember this: you are everything i never knew i was waiting for, and im never letting go.",
     ],
     stickers: [{ text: "never letting go 💌", rotate: -4, tone: "pink" }],
     doodles: ["hearts", "stars"],
   },
 
-  // ==== chapter 2 ====
+  // ==== ch2 ====
   {
-    kicker: "chapter two",
-    title: "how i fell in love with you",
     paragraphs: [
-      "I knew i loved you when i caught myself rechecking your reposts, wondering if there was anything about me. I fell in love with you when i started listening to romantic songs. I fell in love with you when i started loving being on calls instead of ghosting people. I fell in love with you when i actually wanted to have a conversation with someone so interesting.",
-      "I knew i fell in love with you when i caught myself recording videos so i could show and tell you about them later.",
+      "this is how i fell in love with you, i knew i loved you when i caught myself rechecking your reposts thinking if there is anything about me, i fell in love with you when i started to listening to romantic songs, i fell in love with you when i started loving to be in calls instead of ghosting peoples, i fell in love with you when i actually wanted to have a conversation with someone so interesting in life,",
+      "i knew i fell in love with you when i caught myself recording videos so that i could show and tell you bout them later.",
     ],
     stickers: [{ text: "in love w/ u 💗", rotate: 5, tone: "red" }],
-    photos: [
-      { src: IMG.angel3, caption: "the one 💫", rotate: 4 },
-    ],
+    photos: [{ src: IMG.angel3, caption: "the one 💫", rotate: 4 }],
     doodles: ["hearts", "stars"],
   },
   {
     paragraphs: [
-      "I love the way you look for my hand when it's not with you. I love the way you say my name. I love when you ask for a call. I love how excited you get when you're making surprises for me. I love the way you say you love me. I love the way you write me letters and make things for me. I love the way you put effort into our relationship.",
-      "You have this way of laughing so cutely and loudly at anything, like you can't help it, and i don't think you know how much i love it.",
+      "i love the way you look for my hand when they are not with you, i love the way you say my name, i love when you ask for a call, i love the way you get excited when giving to each others like when making surprises for me, i love the way you say you love me, i love the way you write me letters and make things for me, i love the way you put efforts in our relationship.",
+      "you have this way of laughing so cutely and loudly at anything like you cant help it, and i dont think you know how much i love it.",
     ],
     stickers: [
       { text: "your laugh > everything", rotate: -6 },
@@ -134,45 +158,42 @@ const PAGES: ScrapPage[] = [
   },
   {
     paragraphs: [
-      "You don't see the way your face changes when you're listening to me, like nothing else in the whole world matters for those few seconds. You reassure me too much, for small things that wouldn't have made me sad anyway, and i love that too. I love how you never need to be reassured yourself.",
-      "I wish you could see yourself the way i do: someone so strong, carrying things quietly that most people would let the whole world know about. I don't think you know how kind you are in the small moments, the ones you don't think count. But i count them. All of them.",
+      "you dont see the way your face changes when your listening to me, like nothing else in the whole world matters for those few seconds. you reassure too much, for small things that wouldn't have made me sad, and i love that too, i love how you never feel to make reassured,",
+      "and i wish you could see yourself the way i do: someone who is so strong, carrying things quietly that most people would let everyone know about. i dont think you know how kind you are in the small moments, the ones you dont think count. but i count them. all of them.",
     ],
     stickers: [{ text: "i count all of them ✨", rotate: -3, tone: "yellow" }],
     doodles: ["stars", "icecream"],
   },
 
-  // ==== chapter 3 ====
+  // ==== ch3 ====
   {
-    kicker: "chapter three",
-    title: "who i became with you",
     paragraphs: [
-      "Before you, i didn't know how much of myself i kept sealed and put away, saved for no one in particular. I was so used to bracing for things, for disappointment, for being misunderstood, for having to explain myself twice, that i didn't know how tired that made me until i stopped needing to do it around you.",
-      "You didn't ask me to be softer or easier or less. You just made space for whoever i actually was that day, and somehow that made me want to be better anyway.",
+      "before you, i didn't know how much of myself i kept sealed myself and put away, saved for no one in particular. i was so used to bracing for things like for disappointment, for being misunderstood, for having to explain myself twice, that i didn't know how tired that made me until i stopped needing to do it around you.",
+      "you didn't ask me to be softer or easier or less, you just made space for whoever i actually was that day, and somehow that made me want to be better anyways.",
     ],
     photos: [
-      { src: IMG.angel4, caption: "who i became with you", rotate: -5, hearts: [
-        { text: "you saw me", rotate: -6, tone: "red" },
-      ]},
+      {
+        src: IMG.angel4,
+        caption: "who i became with you",
+        rotate: -5,
+        hearts: [{ text: "you saw me", rotate: -6, tone: "red" }],
+      },
     ],
     doodles: ["rainbow", "hearts"],
   },
   {
     paragraphs: [
-      "I used to think patience was something you performed for people you were trying to impress. But watching you be patient with me, even when i don't deserve it, taught me it's actually something you choose over and over, because you've decided someone is worth it.",
-      "I laugh more now. I forgive myself faster. I say what i mean instead of circling it. I don't know exactly what happened, there wasn't one single moment i can point to. But somewhere between the ordinary days, you rearranged something in me, quietly, the way you do everything. And i'm not who i was before i knew you.",
-      "I'm someone steadier, someone kinder to himself, someone who finally understands what it means to be loved without conditions attached. That's what you gave me. Not by trying to change me, but just by staying.",
+      "i used to think that patience was something you performed for people you were trying to impress, but watching you be patient with me, even when i dont deserve it, taught me its actually something you choose over and over, because youve decided someone is worth it.",
+      "i laugh more now. i forgive myself faster. i say what i mean instead of circling it. i dont know exactly what happened but there wasn't one moment where i can pint to somewhere between the otrdinary days, you rearranged something in me, quielty the way you do everything and im not who i was before i knew you.",
+      "im someone steadier, someone kinder to himself, someone who finally understands what it means to be loved without conditions attached. that's what you gave me. not by trying to change me, but just by staying.",
     ],
     stickers: [{ text: "thank you for staying 💐", rotate: -4, tone: "pink" }],
     doodles: ["stars", "hearts"],
   },
 
-  // ==== chapter 4 (reasons) ====
+  // ==== ch4 (reasons) ====
   {
-    kicker: "chapter four",
-    title: "reasons i love you",
-    paragraphs: [
-      "and here is some reasons why i love you,",
-    ],
+    paragraphs: ["and here is some reasons why i love you"],
     stickers: [
       { text: "there's a million more", rotate: -5, tone: "pink" },
       { text: "but here's a few 🎀", rotate: 4, tone: "yellow" },
@@ -181,9 +202,9 @@ const PAGES: ScrapPage[] = [
   },
   {
     paragraphs: buildReasons([
-      "because you're beautiful, inside and out.",
-      "because you're smart, emotionally and logically.",
-      "because you're interested in everything i say.",
+      "because your beautiful, inside and out.",
+      "because your smart, emotionally and logically.",
+      "because your interested in everything i say.",
       "because your laugh is my favorite sound.",
       "because you actually listen when i talk.",
       "because you're working so hard for your acca and i get to watch you grow.",
@@ -270,7 +291,6 @@ const PAGES: ScrapPage[] = [
     doodles: ["girl", "hearts"],
   },
   {
-    title: "and always,",
     paragraphs: buildReasons([
       "because you say i love you first, without fear.",
       "because your dreams matter to you, and that matters to me.",
@@ -298,9 +318,10 @@ function buildReasons(lines: string[]): string[] {
   return lines;
 }
 
-// ————— components —————
+// ===== components =====
 function AnniversaryPage() {
   const [unlocked, setUnlocked] = useState(false);
+
   return (
     <main
       className="relative min-h-screen overflow-hidden px-4 py-8"
@@ -319,9 +340,11 @@ function AnniversaryPage() {
         <ChevronLeft className="h-3.5 w-3.5" /> home
       </Link>
 
-      <div className="relative z-10 flex min-h-screen items-center justify-center">
+      <div className="relative z-10 flex min-h-screen items-center justify-center pb-24">
         {unlocked ? <Scrapbook /> : <PasscodeGate onUnlock={() => setUnlocked(true)} />}
       </div>
+
+      {unlocked && <MusicPlayer />}
     </main>
   );
 }
@@ -366,9 +389,7 @@ function PasscodeGate({ onUnlock }: { onUnlock: () => void }) {
               placeholder="••"
               className="w-full rounded-2xl border-2 border-rose-200 bg-white/90 px-6 py-4 text-center font-hand text-4xl tracking-widest text-rose-700 outline-none focus:border-rose-400"
             />
-            {error && (
-              <p className="mt-2 font-hand text-xl text-red-500">nope, try again 🥲</p>
-            )}
+            {error && <p className="mt-2 font-hand text-xl text-red-500">nope, try again 🥲</p>}
             <button
               type="submit"
               className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-rose-500 px-6 py-3 font-hand text-2xl font-bold text-white shadow-romantic transition hover:bg-rose-600"
@@ -412,7 +433,9 @@ function Scrapbook() {
             <button
               key={i}
               onClick={() => setPage(i)}
-              className={`h-2 w-2 rounded-full transition ${i === page ? "bg-rose-500 scale-125" : "bg-rose-200 hover:bg-rose-300"}`}
+              className={`h-2 w-2 rounded-full transition ${
+                i === page ? "bg-rose-500 scale-125" : "bg-rose-200 hover:bg-rose-300"
+              }`}
               aria-label={`Go to page ${i + 1}`}
             />
           ))}
@@ -453,21 +476,9 @@ function ScrapPageView({ page }: { page: ScrapPage }) {
       <Doodles kinds={page.doodles} />
 
       <div className="relative px-8 pl-20 pt-10 pb-8 md:px-12 md:pl-24">
-        {page.kicker && (
-          <p className="font-marker text-xl uppercase tracking-widest text-rose-400">
-            {page.kicker}
-          </p>
-        )}
-        {page.title && (
-          <h2 className="font-marker text-5xl font-bold leading-tight text-rose-500 md:text-6xl"
-              style={{ textShadow: "2px 2px 0 rgba(255,255,255,0.9)" }}>
-            {page.title}
-          </h2>
-        )}
-
         {/* photos float to the right on md+ */}
         {page.photos && page.photos.length > 0 && (
-          <div className="mt-6 grid gap-6 md:grid-cols-5">
+          <div className="mt-2 grid gap-6 md:grid-cols-5">
             <div className="space-y-5 md:col-span-3">
               {page.paragraphs.map((p, i) => (
                 <p key={i} className="font-hand text-2xl leading-[34px] text-rose-950/85 md:text-[26px]">
@@ -487,7 +498,7 @@ function ScrapPageView({ page }: { page: ScrapPage }) {
         )}
 
         {!page.photos && (
-          <div className="mt-6 space-y-4">
+          <div className="mt-2 space-y-4">
             {page.paragraphs.map((p, i) => (
               <p key={i} className="font-hand text-2xl leading-[34px] text-rose-950/85 md:text-[26px]">
                 {p}
@@ -518,9 +529,7 @@ function Polaroid({ photo }: { photo: PhotoSticker }) {
   return (
     <div className="relative bg-white p-3 pb-8 shadow-romantic" style={{ transform: `rotate(${photo.rotate ?? 0}deg)` }}>
       <img src={photo.src} alt="" className="h-52 w-56 object-cover" />
-      {photo.caption && (
-        <p className="mt-2 text-center font-hand text-xl text-rose-600">{photo.caption}</p>
-      )}
+      {photo.caption && <p className="mt-2 text-center font-hand text-xl text-rose-600">{photo.caption}</p>}
       {photo.hearts?.map((h, i) => (
         <div
           key={i}
@@ -593,12 +602,8 @@ function Doodles({ kinds }: { kinds?: Doodle[] }) {
           <span className="absolute bottom-16 left-24 text-2xl">☁️</span>
         </>
       )}
-      {set.has("girl") && (
-        <span className="absolute right-20 top-8 text-4xl select-none">💐</span>
-      )}
-      {set.has("icecream") && (
-        <span className="absolute bottom-14 left-24 text-3xl select-none">🍨</span>
-      )}
+      {set.has("girl") && <span className="absolute right-20 top-8 text-4xl select-none">💐</span>}
+      {set.has("icecream") && <span className="absolute bottom-14 left-24 text-3xl select-none">🍨</span>}
       {set.has("mix") && (
         <>
           <span className="absolute right-10 top-10 text-4xl">🌈</span>
@@ -608,5 +613,99 @@ function Doodles({ kinds }: { kinds?: Doodle[] }) {
         </>
       )}
     </>
+  );
+}
+
+// ===== music player =====
+function MusicPlayer() {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [index, setIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [muted, setMuted] = useState(false);
+
+  const track = AUDIO[index];
+  const hasTracks = AUDIO.some((t) => t.src.trim() !== "");
+
+  // Try to autoplay once the scrapbook unlocks (this counts as a user gesture,
+  // since it happens right after the passcode form submit).
+  useEffect(() => {
+    if (!hasTracks) return;
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setIsPlaying(false)); // browser blocked it — user can hit play manually
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
+      audio.play().catch(() => setIsPlaying(false));
+    } else {
+      audio.pause();
+    }
+  }, [index]);
+
+  if (!hasTracks) return null;
+
+  const togglePlay = () => setIsPlaying((p) => !p);
+  const next = () => setIndex((i) => (i + 1) % AUDIO.length);
+  const prev = () => setIndex((i) => (i - 1 + AUDIO.length) % AUDIO.length);
+  const toggleMute = () => {
+    if (audioRef.current) audioRef.current.muted = !muted;
+    setMuted((m) => !m);
+  };
+
+  return (
+    <div className="fixed bottom-4 left-1/2 z-30 w-[92%] max-w-sm -translate-x-1/2">
+      <audio
+        ref={audioRef}
+        src={track.src}
+        onEnded={next}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      />
+      <div className="flex items-center gap-3 rounded-full border-2 border-white bg-white/90 px-4 py-2.5 shadow-romantic backdrop-blur">
+        <button
+          onClick={prev}
+          className="text-rose-500 transition hover:text-rose-700"
+          aria-label="Previous song"
+        >
+          <SkipBack className="h-4 w-4" fill="currentColor" />
+        </button>
+
+        <button
+          onClick={togglePlay}
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-rose-500 text-white shadow-sm transition hover:bg-rose-600"
+          aria-label={isPlaying ? "Pause" : "Play"}
+        >
+          {isPlaying ? <Pause className="h-4 w-4" fill="currentColor" /> : <Play className="ml-0.5 h-4 w-4" fill="currentColor" />}
+        </button>
+
+        <button
+          onClick={next}
+          className="text-rose-500 transition hover:text-rose-700"
+          aria-label="Next song"
+        >
+          <SkipForward className="h-4 w-4" fill="currentColor" />
+        </button>
+
+        <div className="min-w-0 flex-1">
+          <p className="truncate font-hand text-lg leading-tight text-rose-700">{track.title}</p>
+          <p className="truncate font-hand text-sm leading-tight text-rose-400">{track.artist}</p>
+        </div>
+
+        <button
+          onClick={toggleMute}
+          className="text-rose-400 transition hover:text-rose-600"
+          aria-label={muted ? "Unmute" : "Mute"}
+        >
+          {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+        </button>
+      </div>
+    </div>
   );
 }
