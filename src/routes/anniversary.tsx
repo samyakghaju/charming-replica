@@ -34,14 +34,14 @@ type ScrapPage = {
   doodles?: Doodle[];
 };
 
-// ————— content —————
+// ===== content =====
 const PAGES: ScrapPage[] = [
   {
     kicker: "chapter one",
     title: "All just for you",
     paragraphs: [
       "Hi Angel, my beloved. It's been 30 days since we committed to each other, and this might be the best 30 days of my life — there wasn't a single day that went by where i felt low. You're just the bestest girlfriend and i hope i can be the bestest boyfriend to you too. I love you baby, i'm in love with you, and i always will be.",
-      "I feel your love. From the moment i felt your heart and soul — when we hadn't even met in real life — something inside me recognized you. I know you felt it too. It wasn't just attraction, it was like finding something familiar, as if i'd known you angel for a long, long time in another life. You felt like home to me.",
+      "I feel your love. From the moment i felt your heart and soul, when we hadn't even met in real life, something inside me recognized you. I know you felt it too. It wasn't just attraction, it was like finding something familiar, as if i'd known you angel for a long, long time in another life. You felt like home to me.",
     ],
     stickers: [{ text: "you feel like home 🏡", rotate: -4 }],
     photos: [
@@ -54,7 +54,7 @@ const PAGES: ScrapPage[] = [
   },
   {
     paragraphs: [
-      "Your voice is my favourite sound in this whole world. I love hearing your voice even when i don't have anything to say. Your voice brings calmness to me — not only calmness though, it raises something else too (that's a topic for another time).",
+      "Your voice is my favourite sound in this whole world. I love hearing your voice even when i don't have anything to say. Your voice brings calmness to me, not only calmness though, it raises something else too (that's a topic for another time).",
       "Just know i love your voice, and the way you tease me with it when you say mhmm — AHHHHHH, you don't know how much i love your voice. I can't even say. It's the bestesttt sound i get to hear.",
     ],
     stickers: [
@@ -65,7 +65,7 @@ const PAGES: ScrapPage[] = [
   },
   {
     paragraphs: [
-      "You show me what real love feels like. Instead of the short-term relationships and shit, you actually show me what real love is. Not toxic, no pressure, no nothing — just you, being real. I love how real you are. Omg, i just love everything about you my beloved angel.",
+      "You show me what real love feels like. Instead of the short-term relationships and shit, you actually show me what real love is. Not toxic, no pressure, no nothing, just you, being real. I love how real you are. Omg, i just love everything about you my beloved angel.",
       "Every word you spoke, every silence we shared has left a mark on me. You're the first thing that has ever made me feel completely at peace. I think that's why i fell in love with you.",
     ],
     photos: [
@@ -77,7 +77,7 @@ const PAGES: ScrapPage[] = [
   },
   {
     paragraphs: [
-      "With others, silence feels boring and my avoidant tendencies come up and make me leave. But with you, it doesn't matter. Even in calls, the silence doesn't bore me. I think that's why i fell in love with you — because of how your presence calms me. It didn't matter what else was going on in my life. With you, i just felt… i felt at home. I felt at peace. I was like \"yoooo so eso po hudo raicha maya pirati vaneko omg\". So this is what a soulmate actually feels like.",
+      "With others, silence feels boring and my avoidant tendencies come up and make me leave. But with you, it doesn't matter. Even in calls, the silence doesn't bore me. I think that's why i fell in love with you, because of how your presence calms me. It didn't matter what else was going on in my life. With you, i just felt… i felt at home. I felt at peace. I was like \"yoooo so eso po hudo raicha maya pirati vaneko omg\". So this is what a soulmate actually feels like.",
     ],
     stickers: [
       { text: "soulmate 💫", rotate: -5, tone: "pink" },
@@ -86,8 +86,8 @@ const PAGES: ScrapPage[] = [
   },
   {
     paragraphs: [
-      "You don't just live in my heart — you've built a home there. You've filled spaces i didn't even know were empty, because i never wanted any relationships. You've softened the walls i built out of fear for my career and taught me that love doesn't have to hurt to be real.",
-      "I don't look at you and see a chapter. I look at you and see the whole story. Your loud laughters, the soft touch, the way you play with my hairs, the way your hands move in my back — the kind of love that gives me hope and warmth.",
+      "You don't just live in my heart, you've built a home there. You've filled spaces i didn't even know were empty, because i never wanted any relationships. You've softened the walls i built out of fear for my career and taught me that love doesn't have to hurt to be real.",
+      "I don't look at you and see a chapter. I look at you and see the whole story. Your loud laughters, the soft touch, the way you play with my hairs, the way your hands move in my back, the kind of love that gives me hope and warmth.",
     ],
     stickers: [{ text: "the whole story 📖", rotate: 3, tone: "yellow" }],
     photos: [
@@ -100,14 +100,14 @@ const PAGES: ScrapPage[] = [
   {
     paragraphs: [
       "With you, love is not about grand moments. It's in the little things. The way you check on me, the way you never miss to say joksjoks after teasing me, how fast you reassure me, how you never want me to overthink anything, the way your presence alone makes everything feel okay.",
-      "And sometimes i wonder how i ever lived before i knew you, because now even an hour without your voice feels incomplete. Even the best moments feel like they're missing something if you're not in them — so i try to record or call or text you when anything interesting or fun happens. Whether it's in college during an event, in the gaming zone with a fun game, or in office when something fun is going on.",
-      "You've become the rhythm of my life — the heartbeat beneath everything i do. And loving you? It's the one thing that's never felt confusing. So if you're ever unsure, if you ever doubt how much you mean to me, just remember this: you are everything i never knew i was waiting for, and i'm never letting go.",
+      "And sometimes i wonder how i ever lived before i knew you, because now even an hour without your voice feels incomplete. Even the best moments feel like they're missing something if you're not in them, so i try to record or call or text you when anything interesting or fun happens. Whether it's in college during an event, in the gaming zone with a fun game, or in office when something fun is going on.",
+      "You've become the rhythm of my life, the heartbeat beneath everything i do. And loving you? It's the one thing that's never felt confusing. So if you're ever unsure, if you ever doubt how much you mean to me, just remember this: you are everything i never knew i was waiting for, and i'm never letting go.",
     ],
     stickers: [{ text: "never letting go 💌", rotate: -4, tone: "pink" }],
     doodles: ["hearts", "stars"],
   },
 
-  // ———— chapter 2 ————
+  // ==== chapter 2 ====
   {
     kicker: "chapter two",
     title: "how i fell in love with you",
@@ -134,19 +134,19 @@ const PAGES: ScrapPage[] = [
   },
   {
     paragraphs: [
-      "You don't see the way your face changes when you're listening to me — like nothing else in the whole world matters for those few seconds. You reassure me too much, for small things that wouldn't have made me sad anyway, and i love that too. I love how you never need to be reassured yourself.",
-      "I wish you could see yourself the way i do: someone so strong, carrying things quietly that most people would let the whole world know about. I don't think you know how kind you are in the small moments — the ones you don't think count. But i count them. All of them.",
+      "You don't see the way your face changes when you're listening to me, like nothing else in the whole world matters for those few seconds. You reassure me too much, for small things that wouldn't have made me sad anyway, and i love that too. I love how you never need to be reassured yourself.",
+      "I wish you could see yourself the way i do: someone so strong, carrying things quietly that most people would let the whole world know about. I don't think you know how kind you are in the small moments, the ones you don't think count. But i count them. All of them.",
     ],
     stickers: [{ text: "i count all of them ✨", rotate: -3, tone: "yellow" }],
     doodles: ["stars", "icecream"],
   },
 
-  // ———— chapter 3 ————
+  // ==== chapter 3 ====
   {
     kicker: "chapter three",
     title: "who i became with you",
     paragraphs: [
-      "Before you, i didn't know how much of myself i kept sealed and put away, saved for no one in particular. I was so used to bracing for things — for disappointment, for being misunderstood, for having to explain myself twice — that i didn't know how tired that made me until i stopped needing to do it around you.",
+      "Before you, i didn't know how much of myself i kept sealed and put away, saved for no one in particular. I was so used to bracing for things, for disappointment, for being misunderstood, for having to explain myself twice, that i didn't know how tired that made me until i stopped needing to do it around you.",
       "You didn't ask me to be softer or easier or less. You just made space for whoever i actually was that day, and somehow that made me want to be better anyway.",
     ],
     photos: [
@@ -159,19 +159,19 @@ const PAGES: ScrapPage[] = [
   {
     paragraphs: [
       "I used to think patience was something you performed for people you were trying to impress. But watching you be patient with me, even when i don't deserve it, taught me it's actually something you choose over and over, because you've decided someone is worth it.",
-      "I laugh more now. I forgive myself faster. I say what i mean instead of circling it. I don't know exactly what happened — there wasn't one single moment i can point to. But somewhere between the ordinary days, you rearranged something in me, quietly, the way you do everything. And i'm not who i was before i knew you.",
+      "I laugh more now. I forgive myself faster. I say what i mean instead of circling it. I don't know exactly what happened, there wasn't one single moment i can point to. But somewhere between the ordinary days, you rearranged something in me, quietly, the way you do everything. And i'm not who i was before i knew you.",
       "I'm someone steadier, someone kinder to himself, someone who finally understands what it means to be loved without conditions attached. That's what you gave me. Not by trying to change me, but just by staying.",
     ],
     stickers: [{ text: "thank you for staying 💐", rotate: -4, tone: "pink" }],
     doodles: ["stars", "hearts"],
   },
 
-  // ———— chapter 4 (reasons) ————
+  // ==== chapter 4 (reasons) ====
   {
     kicker: "chapter four",
     title: "reasons i love you",
     paragraphs: [
-      "and here is some reasons why i love you —",
+      "and here is some reasons why i love you,",
     ],
     stickers: [
       { text: "there's a million more", rotate: -5, tone: "pink" },
@@ -270,7 +270,7 @@ const PAGES: ScrapPage[] = [
     doodles: ["girl", "hearts"],
   },
   {
-    title: "and always —",
+    title: "and always,",
     paragraphs: buildReasons([
       "because you say i love you first, without fear.",
       "because your dreams matter to you, and that matters to me.",
@@ -504,7 +504,7 @@ function ScrapPageView({ page }: { page: ScrapPage }) {
         )}
 
         <div className="mt-8 flex items-center justify-between border-t border-dashed border-rose-200 pt-4">
-          <span className="font-hand text-xl text-rose-400">— samyak 💌</span>
+          <span className="font-hand text-xl text-rose-400">xo, samyak 💌</span>
           <span className="inline-flex items-center gap-1 font-hand text-xl text-rose-400">
             <Sparkles className="h-4 w-4" /> day 30
           </span>
