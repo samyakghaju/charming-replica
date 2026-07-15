@@ -14,11 +14,11 @@ export const Route = createFileRoute("/anniversary")({
 
 // 📸 Swap these with your own photo URLs later.
 const IMG = {
-  cover: "https://i.imgur.com/m4WDrCj.jpeg",
+  cover: "https://i.imgur.com/LkB4b2N.jpeg",
   angel1: "https://i.imgur.com/Mec54yj.jpeg",
-  angel2: "https://i.imgur.com/1yh9Igs.jpeg",
-  angel3: "https://i.imgur.com/94I7lHB.jpeg",
-  angel4: "https://i.imgur.com/SUPO06i.jpeg",
+  angel2: "https://i.imgur.com/ZDZy60F.jpeg",
+  angel3: "https://i.imgur.com/sxL8EXT.jpeg",
+  angel4: "https://i.imgur.com/5Eu32hi.png",
 };
 
 type Sticker = { text: string; rotate?: number; tone?: "pink" | "red" | "yellow" };
